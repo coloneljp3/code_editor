@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<style>
+  .body{
+    position:fixed
+  }
+.droptarget {
+  width: 100px; 
+  height: 35px;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.new_svg{
+height:100px;
+width:100px;
+  
+}
+
+
+</style>
+<script src = "all_func.js">
+
+</script>
+<script>
+
+
+window.onload = (event) =>{setTimeout(windowAlert,3000)};
+
+window.onclick = (event) =>{
+var ev = event.target;
+var div = document.createElement('div');
+div.style.width = "40px";
+div.style.height = "40px";
+var svg = document.createElement('svg');
+svg.style.width = "40px";
+svg.style.height = "40px";
+var circle = document.createElement('circle');
+circle.width = "10px";
+circle.height = "10px";
+circle.cx = "30";
+circle.cy = "30";
+circle.fill = "black";
+circle.stroke = 'black';
+circle.r = "20";
+svg.appendChild(circle)
+div.appendChild(svg);
+document.getElementsByTagName('body')[0].appendChild(div)
+}
+function letD(event){
+event.preventDefault();
+
+}
+
+function Drag(event){
+event.dataTransfer.setData('text',event.target.id);
+
+
+}
+
+function Drop(event){
+  event.preventDefault();
+var dat = event.dataTransfer.getData('text');
+console.log(dat);
+event.target.appendChild(document.getElementById(dat))
+}
+</script>
+<body>
+ <div><p  id = "root" ondrop = "Drop(event)" draggable="true" ondragstart= "Drag(event)">Hello</p></div>
+<div id = "root_2" ondragstart = "Drag(event)" ondragover = "letD(event);" ondrop = "Drop(event)" style = "border-style: solid;width:300px;height:300px"></div>
+</body>
+
+
+</html>
